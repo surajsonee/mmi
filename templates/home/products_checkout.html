@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main min-vh-100" id="top">
+
+
+    <!-- ============================================-->
+    <!-- Preloader ==================================-->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+        <div class="line-scale-pulse-out-rapid">
+            <div> </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div> </div>
+        </div>
+        </div>
+    </div>
+    <!-- ============================================-->
+    <!-- End of Preloader ===========================-->
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-0" id="page-profile">
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-7 px-0">
+            <div class="sticky-top overflow-hidden min-vh-50 min-vh-xl-100">
+                <div class="bg-holder" style="background-image:url({% static 'img/nbarlogo.jpg' %});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'>
+                </div>
+                <!--/.bg-holder-->
+
+            </div>
+            </div>
+            <div class="col-xl-5 bg-white py-6">
+            <div class="row h-100 flex-center">
+                <div class="col-lg-8">
+                <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                    <div class="col-md-10 col-lg-12">
+                        <div class="overflow-hidden">
+                            <p> <h6>Selected Membership Plan: </h6> {{ selected_membership.m_type }}</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="sticky-top py-6 py-lg-8">
+                            <div class="badge border text-danger border-danger font-sans-serif"><svg class="svg-inline--fa fa-star fa-w-18 me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg><!-- <span class="fas fa-star me-1"></span> Font Awesome fontawesome.com -->Best Seller</div>
+                            <h2 class="fw-normal">${{ selected_membership.m_price }}&nbsp;
+                            </h2>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            </div>
+                            <div class="d-grid">
+                            </div>
+
+                            <div id="collapseStripe" class="wrapper">
+                                <script src="https://js.stripe.com/v3/"></script>
+                              
+                                <!-- can't do this -->
+                                <!-- <script src="{% static 'js/stripeV3.js' %}"></script> -->
+                              
+                                <form action="#" method="POST" id="payment-form">
+                                  {% csrf_token %}
+                                  <div class="form-row">
+                                    <label for="card-element">
+                                      Credit or debit card
+                                    </label>
+                                    <div id="card-element" class="StripeElement StripeElement--empty">
+                                        <div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame3" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-8a434729e4eb82355db4882974049278.html#style[base][color]=%2332325d&amp;style[base][lineHeight]=18px&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;features[noop]=false&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js%2Felements%2Fquickstart&amp;controllerId=__privateStripeController0" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; height: 18px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"><input class="__PrivateStripeElement-safariInput" aria-hidden="true" tabindex="-1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;">
+                                        </div>
+                                    </div>
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+                                  </div>
+                              
+                                  <button type = "submit">Pay</button>
+                                </form>
+                                
+                                </div>
+                                
+                            </div>
+                            <div id="stripe-token-handler" class="is-hidden">Success! Got token: <span class="token"></span></div>
+
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+<!-- script for the stripe form -->
+<script src="{% static 'js/checkout.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!-- script for toggling display of the form -->
+<script type="text/javascript">
+    function toggleDisplay() {
+      var x = document.getElementById("collapseStripe");
+      if (x.style.display === "none") {
+          x.style.display = "block";
+      } else {
+          x.style.display = "none";
+      }
+    };
+</script>
+
+
+{% endblock content %}

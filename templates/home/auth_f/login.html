@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block content %}
+
+
+
+
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main min-vh-100" id="top">
+
+
+    <!-- ============================================-->
+    <!-- Preloader ==================================-->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+        <div class="line-scale-pulse-out-rapid">
+            <div> </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div> </div>
+        </div>
+        </div>
+    </div>
+    <!-- ============================================-->
+    <!-- End of Preloader ===========================-->
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-0">
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 px-0">
+            <div class="sticky-top vh-lg-100 py-9">
+                <div class="bg-holder" style="background-image:url({% static 'img/auth_bg.png' %});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'>
+                </div>
+                <!--/.bg-holder-->
+
+            </div>
+            </div>
+            <div class="col-lg-6 py-6">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-sm-8 col-md-6 col-lg-10 col-xl-8" data-zanim-xs='{"delay":0.5,"animation":"slide-right"}' data-zanim-trigger="scroll">
+                <h3 class="display-4 fs-2">Perfect for Beginners,<br />and Experienced traders.</h3>
+                <h6 class="text-danger mt-3">Specially created from who does Algo Trading for who does Algo Trading.</h6>
+                <form class="mt-5" method="POST" action={% url 'auth_f:login' %}>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                    <input class="form-control bg-light" type="text" required name="username" placeholder="Username" value="{{ data.username }}"/>
+                    </div>
+                    <div class="mb-0">
+                    <input class="form-control bg-light" type="password" required name="password" placeholder="Password" />
+                    </div>
+
+                    <div class="mb-0 form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Log As Admin
+                    </label>
+                    </div>
+
+
+                    <div class="mb-3 d-grid">
+                    <button class="btn btn-dark mt-3" type="submit" name="submit">Sign In</button>
+                    </div>
+                    <div class="mb-3 w-100 position-relative text-center mt-4">
+                    <hr class="text-300" />
+                    <div class="absolute-centered px-3 font-sans-serif fs--1 text-500">or Sign-In with</div>
+                    </div>
+                    <div class="mb-0">
+                    <div class="row gx-2">
+                        <div class="col-6 d-grid"><a class="btn btn-outline-danger btn-sm mt-2" href="#!"><span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>
+                        <div class="col-6 d-grid"><a class="btn btn-outline-primary btn-sm mt-2" href="#!"><span class="fab fa-facebook me-2" data-fa-transform="grow-8"></span> facebook</a></div>
+                    </div>
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+  
+
+
+
+
+{% endblock content %}

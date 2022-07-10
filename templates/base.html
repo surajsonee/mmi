@@ -1,0 +1,168 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+
+
+<html class="has-sidemenu" lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>MoneyMovesInvestments</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono%7cPT+Serif:400,400i%7cLato:100,300,400,700,800,900" rel="stylesheet">
+    
+    {% compress css %}
+    <link href="{% static 'css/loaders.css/loaders.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/user.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    {% endcompress %}
+
+    
+    
+
+  </head>
+
+
+  <body>
+
+    {% include 'messages.html' %}
+
+    <nav class="fancynavbar fancynavbar-expand-lg" data-zanim-lg='{"from":{"opacity":1,"x":70},"to":{"opacity":1,"x":0},"ease":"CubicBezier","duration":0.8,"delay":0.3}' data-zanim-xs='{"from":{"opacity":1,"y":-37},"to":{"opacity":1,"y":0},"ease":"CubicBezier","duration":0.8,"delay":0.3}' data-zanim-trigger="scroll" data-exclusive="true">
+        <div class="fancynavbar-togglerbar" data-onscroll-fade-in="data-onscroll-fade-in"><a class="fancynavbar-brand" href="../index.html"><img class="fancynavbar-brand-img" src="{% static 'img/nbarlogo.jpeg' %}" alt="" width="30" height="30" data-zanim-lg='{"from":{"opacity":0,"x":45},"to":{"opacity":1,"x":0},"ease":"CubicBezier","duration":0.8,"delay":0.4}' data-zanim-trigger="scroll" />
+  
+            <!--You can use icon or text logo as well-->
+            <!--<span class='fab fa-superpowers fs-3'></span>-->
+            <!--<span class='logo-sparrow'>S</span>-->
+          </a>
+          <div class="fancynavbar-toggler">
+            <svg class="fancynavbar-toggler-icon" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" data-zanim-lg='{"from":{"opacity":0,"x":45},"to":{"opacity":1,"x":0},"ease":"CubicBezier","duration":0.8,"delay":0.5}' data-zanim-trigger="scroll">
+              <path id="path-top" d="M20,25c0,0,22,0,30,0c16,0,18.89,40.71-.15,21.75C38.7,35.65,19.9,16.8,19.9,16.8"></path>
+              <path id="path-middle" d="M20,32h30"></path>
+              <path id="path-bottom" d="M19.9,46.98c0,0,18.8-18.85,29.95-29.95C68.89-1.92,66,38.78,50,38.78c-8,0-30,0-30,0"></path>
+            </svg>
+          </div>
+          <div class="fancynavbar-addon" data-zanim-lg='{"from":{"opacity":1,"x":45},"to":{"opacity":1,"x":0},"ease":"CubicBezier","duration":0.8,"delay":0.4}' data-zanim-trigger="scroll"><a class="fancynavbar-addon-item" href="#!"><span class="fab fa-twitter"></span></a><a class="fancynavbar-addon-item" href="#languageModal" data-bs-toggle="modal"><span class="font-sans-serif ls fw-black fs--1 d-block">EN</span></a>
+          </div>
+        </div>
+        <div class="fancynavbar-collapse">
+            <ul class="fancynavbar-nav">
+                <li class="fancynav-item"><a class="fancynav-link" href="{% url 'home:home' %}"><span class="fancynav-link-content">MMI</span></a>
+                </li>
+                <li class="fancynav-item fancy-dropdown"><a class="fancynav-link fancy-dropdown-toggle" href="JavaScript:void(0)"><span class="fancynav-link-content">MMI PRO</span></a>
+                  <div class="fancy-dropdown-menu">
+                      <div class="row pb-2 pt-3">
+                      <div class="col-sm-auto mb-3">
+                          <div class="row">
+                          <div class="col-sm-auto pe-4"><a class="fancy-dropdown-item text-white fw-black ls text-uppercase fs--1 mb-1" href="JavaScript:void(0)">BECOME PRO</a><a class=" false fancy-dropdown-item" href="{% url 'home:home' %}"> Choose A Subscription Plan</a>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  </li>
+                <li class="fancynav-item fancy-dropdown"><a class="fancynav-link fancy-dropdown-toggle" href="JavaScript:void(0)"><span class="fancynav-link-content">MMI 101</span></a>
+                <div class="fancy-dropdown-menu">
+                    <div class="row pb-4 pt-3">
+                    <div class="col-sm-auto pe-4"><a class=" false fancy-dropdown-item" href="{% url 'home:home' %}"> Getting Started</a><a class=" false fancy-dropdown-item" href="{% url 'home:home' %}"> MM Sigma Algo</a>
+                    </div>
+                    </div>
+                </div>
+                </li>
+                <li class="fancynav-item"><a class="fancynav-link" href="{% url 'home:home' %}"><span class="fancynav-link-content">MMI Team</span></a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="fancynav-item"><a class="fancynav-link" href="{% url 'home:profile' %}"><span class="fancynav-link-content">Profile</span></a></li>
+                    <li class="fancynav-item"><a class="fancynav-link" href="{% url 'auth_f:logout' %}"><span class="fancynav-link-content">Logout</span></a></li>
+                {% else %}
+                    <li class="fancynav-item"><a class="fancynav-link" href="{% url 'auth_f:login' %}"><span class="fancynav-link-content">Login</span></a></li>
+                    <li class="fancynav-item"><a class="fancynav-link" href="{% url 'auth_f:register' %}"><span class="fancynav-link-content">Sign Up</span></a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+
+
+      </nav>
+  
+    {% block content %}
+  
+    {% endblock content %}
+    
+    <!--===============================================-->
+    <!--    Footer-->
+    <!--===============================================-->
+    <footer class="footer bg-black text-600 py-4 font-sans-serif text-center overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 order-lg-2 position-relative"><a class="indicator indicator-up" href="#top"><span class="indicator-arrow indicator-arrow-one" data-zanim-xs='{"from":{"opacity":0,"y":15},"to":{"opacity":1,"y":-5,"scale":1},"ease":"Back.easeOut","duration":0.4,"delay":0.9}'></span><span class="indicator-arrow indicator-arrow-two" data-zanim-xs='{"from":{"opacity":0,"y":15},"to":{"opacity":1,"y":-5,"scale":1},"ease":"Back.easeOut","duration":0.4,"delay":1.05}'></span></a></div>
+          <div class="col-lg-4 text-lg-start mt-4 mt-lg-0">
+            <p class="fs--1 text-uppercase ls fw-bold mb-0">MoneyMovesInvestments &copy; &trade; 2022</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'js/vendors/popper/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/vendors/anchorjs/anchor.min.js' %}"></script>
+    <script src="{% static 'js/vendors/is/is.min.js' %}"></script>
+    <script src="{% static 'js/vendors/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/vendors/bigpicture/BigPicture.js' %}"> </script>
+    <script src="{% static 'js/vendors/rellax/rellax.min.js' %}"> </script>
+    <script src="{% static 'js/vendors/countup/countUp.umd.js' %}"> </script>
+    <script src="{% static 'js/vendors/fontawesome/all.min.js' %}"></script>
+    <script src="{% static 'js/vendors/lodash/lodash.min.js' %}"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{% static 'js/vendors/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+    <script src="{% static 'js/vendors/gsap/gsap.js' %}"></script>
+    <script src="{% static 'js/vendors/gsap/customEase.js' %}"></script>
+    <script src="{% static 'js/vendors/gsap/drawSVGPlugin.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-122907869-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-122907869-1');
+    </script>
+    <script src="{% static 'js/theme.js' %}"></script>
+
+  </body>
+
+  
+</html>

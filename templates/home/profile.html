@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block content %}
+
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main min-vh-100" id="top">
+
+
+    <!-- ============================================-->
+    <!-- Preloader ==================================-->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+        <div class="line-scale-pulse-out-rapid">
+            <div> </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div> </div>
+        </div>
+        </div>
+    </div>
+    <!-- ============================================-->
+    <!-- End of Preloader ===========================-->
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-0" id="page-profile">
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-7 px-0">
+            <div class="sticky-top overflow-hidden min-vh-50 min-vh-xl-100">
+                <div class="bg-holder" style="background-image:url({% static 'img/nbarlogo.jpg' %});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'>
+                </div>
+                <!--/.bg-holder-->
+
+            </div>
+            </div>
+            <div class="col-xl-5 bg-white py-6">
+            <div class="row h-100 flex-center">
+                <div class="col-lg-8">
+                <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                    <div class="col-md-10 col-lg-12">
+                    <div class="overflow-hidden">
+                        <h4 data-zanim-xs='{"delay":0.1}'>Welcome, {{user.username}}.</h4>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h6 class="text-700 fw-normal text-uppercase ls mb-4" data-zanim-xs='{"delay":0.2}'>MoneyMovesInvestments, member.</h6>
+                        <br>
+                        <a class="btn btn-primary" href="{% url 'home:profile_update' %}">Edit Details</a>
+                        {% if user_membership.membership.m_type == "Free" %}
+                            <a class="btn btn-primary" href="{% url 'home:profile_migrate_sub' %}">Migrate Subscription</a>
+                        {% endif %}
+                        <br>
+                        <br>
+                        <br>
+                        {% if user_membership.membership.m_type != "Free" %}
+                            <a class="btn btn-primary" href="{% url 'home:profile_cancel_sub' %}">Cancel Subscription</a>
+                            <br>
+                            <br>
+                            <form method="GET" action="{% url 'home:tv_auth' %}">
+                                <a class="btn btn-primary" href="{% url 'home:tv_auth' %}">Enable TV</a>
+                                <br>
+                            </form>
+                            <br>
+                            {% if is_mt5 == True %}
+                                <form method="GET" action="{% url 'home:mt5_license' %}">
+                                    <a class="btn btn-primary" href="{% url 'home:mt5_license' %}">License MT5 Account</a>
+                                    <br>
+                                </form>
+                            {% endif %}
+                            <br>
+                            <form method="POST" action="{% url 'home:discord_auth' %}">
+                                <a class="btn btn-primary" href="{% url 'home:discord_auth' %}">Enable Discord</a>
+                            </form>
+                        {% endif %}
+                        <br>
+                        <br>
+                        {% if request.user.is_superuser %}
+                        <a class="btn btn-primary" href="{% url 'home:profile_ad_ctable' %}">Active Customers Table</a>
+                        {% endif %}
+                        <br>
+                        <br>
+                        <br>
+                        
+                    </div>
+                    </div>
+                    <div class="col-md-7 col-lg-12">
+                    <div class="overflow-hidden">
+                        
+                        <table class="table table-dark">
+                            <tbody>
+                                <tr>
+                                    <th>Membership</th>
+                                    <td>{{ user_membership.membership.m_type }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Membership Next Payment</th>
+                                    {% if user_subscription != None %}  
+                                    <td>{{ user_subscription.get_next_billing_date }}</td>
+                                    {% else %}
+                                    <td>No Active Membership</td>
+                                    {% endif %}
+                                </tr>
+                                
+                                <tr>
+                                    <th>Membership Fee</th>
+                                    <td>{{user_membership.membership.m_price}}</td>
+                                </tr>
+                                <tr>
+
+                                    <th>Email Address</th>
+                                    <td>{{user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date Joined</th>
+                                    {% if user_subscription != None %} 
+                                    <td>{{ user_subscription.get_created_date }}</td>
+                                    {% else %}
+                                    <td>No Active Membership</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>MT5 Account #</th>
+                                    <td>{{user.mt5_acct}}</td>
+                                </tr>
+                                <tr>
+                                    <th>MT5 Psw</th>
+                                    <td>{{user.mt5_bk}}</td>
+                                </tr>
+                                <tr>
+                                    <th>TradingView Account</th>
+                                    <td>{{user.tv_acct}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Discord ID</th>
+                                    <td>{{user.discord_acct}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Discord Access Token</th>
+                                    <td>{{user.discord_at}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block content %}
+
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main min-vh-100" id="top">
+
+
+    <!-- ============================================-->
+    <!-- Preloader ==================================-->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+        <div class="line-scale-pulse-out-rapid">
+            <div> </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div> </div>
+        </div>
+        </div>
+    </div>
+    <!-- ============================================-->
+    <!-- End of Preloader ===========================-->
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-0">
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 px-0">
+            <div class="sticky-top vh-lg-100 py-9">
+                <div class="bg-holder" style="background-image:url({% static 'img/auth_bg.png' %});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'>
+                </div>
+                <!--/.bg-holder-->
+
+            </div>
+            </div>
+            <div class="col-lg-6 py-6">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-sm-8 col-md-6 col-lg-10 col-xl-8" data-zanim-xs='{"delay":0.5,"animation":"slide-right"}' data-zanim-trigger="scroll">
+                <h3 class="display-4 fs-2">Perfect for Beginners,<br />and Experienced traders.</h3>
+                <h6 class="text-danger mt-3">Specially created from who does Algo Trading for who does Algo Trading.</h6>
+                <form class="mt-5" method="POST" {% url 'auth_f:register' %}>
+                    {% csrf_token %}
+                    <div class="row gy-4 align-items-center mb-4">
+                    <div class="col-12">
+                        <input class="form-control bg-light" placeholder="Username" type="text" name="username" value="{{data.username}}" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control bg-light" placeholder="Email Address" type="text" name="email" value="{{data.email}}" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control bg-light" type="password" name="password" placeholder="Password" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control bg-light" type="password" name="password2" placeholder="Confirm Password" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control bg-light" type="text" placeholder="TV Account" name = "tv_acct" value="{{data.tv_acct}}" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control bg-light" type="text" placeholder="MT5 Account" name = "mt5_acct" value="{{data.mt5_acct}}" />
+                    </div>
+                    
+                    <div class="row mb-4 align-items-center">
+                        <div class="col-auto d-grid">
+                            <input class="btn btn-dark" type="submit" name="submit" value="Create an Account" />
+                        </div>
+                        <div class="col-sm">
+                            <p class="fs--1 text-700 mb-0 font-sans-serif mt-2 mt-lg-0">By signing up, you agree to the <a class="text-black" href="#!">terms and conditions.</a></p>
+                        </div>
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+{% endblock content %}

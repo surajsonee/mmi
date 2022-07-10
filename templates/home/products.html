@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block content %}
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main min-vh-100" id="top">
+
+
+<!-- ============================================-->
+<!-- Preloader ==================================-->
+<div class="preloader" id="preloader">
+    <div class="loader">
+    <div class="line-scale-pulse-out-rapid">
+        <div> </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div> </div>
+    </div>
+    </div>
+</div>
+<!-- ============================================-->
+<!-- End of Preloader ===========================-->
+
+
+<!-- ============================================-->
+<!-- <section> begin ============================-->
+<section class="py-lg-7 py-xl-8 mt-5 bg-light" id="ecommerceHeader">
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="offset-xl-3 col px-4" style="max-width: 42.81rem">
+        <h1 class="display-4 fs-3 fs-sm-4 fs-md-5">Money Moves Investments <span class="font-base fst-italic fw-normal px-2 px-md-3">high performing </span>Trading Systems <br class="d-none d-sm-block" />in one subscription plan.</h1>
+        <p class="mt-4 mb-0">All our Trading System are educational tools only and they don't to want to provide financial advise at all. Their purpose is to make you study team, backtest strategies you created thanks to our technology, to be profitable and succeed yourself.</p>
+        </div>
+    </div>
+    </div>
+    <!-- end of .container-->
+
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+
+
+
+
+<!-- ============================================-->
+<!-- <section> begin ============================-->
+<section class="py-0" id="ecommerceProducts">
+
+    <div class="container-fluid px-4">
+    <div class="row mb-5">
+        {% for object in object_list %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% object.get_absolute_url %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/mmbundle.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">{{ object.m_type }}</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">{{ object.m_price }}</h6>
+            </div>
+        </a>
+        <form method="POST" action="{% product:single_product %}">
+            {% csrf_token %}
+            {% if object.m_type != current_membership %}
+            <button class="btn-outline-dark btn"> Subscribe </button>
+            {% else %}
+            <small> This is your current membership! </small>
+            {% endif %}
+            <input type="hidden" name="m_type" value="{{ object.m_type }}" >
+        </form>
+        </div>
+        {% endfor %}
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.1}' data-zanim-trigger="scroll">
+            <div class="badge badge-rotate bg-warning" data-zanim-xs='{"delay":0.8,"animation":"slide-down"}'><span class='fas fa-star'></span> Best selling</div>
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p2.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p3.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Bundle Platinum 3M</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$480.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$600.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.2}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p1.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p4.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Bundle Platinum 6M</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$900.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$1200.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.3}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p2.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p4.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Bundle Platinum 1Y</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$1680.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$2400.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+-->
+        
+
+
+    </div>
+
+    <!-- <div class="row mb-5">
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+        <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+            <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/mmalgosuite.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+            </div>
+            </div>
+        </div>
+        <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Algo Suite 1M</h5>
+        </div>
+        <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">$150.0</h6>
+        </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.1}' data-zanim-trigger="scroll">
+            <div class="badge badge-rotate bg-warning" data-zanim-xs='{"delay":0.8,"animation":"slide-down"}'><span class='fas fa-star'></span> Best selling</div>
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p2.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p4.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Algo Suite 3M</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$360.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$450.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.2}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p1.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p3.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Algo Suite 6M</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$675.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$900.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.3}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/MM_p2.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+                <div class="hoverbox-content hoverbox-background">
+                <div class="hoverbox-bg d-flex flex-center h-100 w-100"><img class="w-100" src="{% static 'img/Products/MM_p4.png' %}" alt="" /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Algo Suite 1Y</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$1260.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$1600.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+        <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0}' data-zanim-trigger="scroll">
+            <div class="hoverbox">
+            <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/mmalgosuite.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+            </div>
+            </div>
+        </div>
+        <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Sigma Algo 1M</h5>
+        </div>
+        <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">$99.0</h6>
+        </div>
+        </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4"><a class="row g-0" href="{% url 'single_product' %}">
+            <div class="col-12 overflow-hidden rounded position-relative" data-zanim-timeline='{"delay":0.1}' data-zanim-trigger="scroll">
+            <div class="badge badge-rotate bg-warning" data-zanim-xs='{"delay":0.8,"animation":"slide-down"}'><span class='fas fa-star'></span> Best selling</div>
+            <div class="hoverbox">
+                <div class="row">
+                <div class="col"><img class="w-100" src="{% static 'img/Products/mmsalgo.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' /></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-6 mt-2">
+            <h5 class="fs-0">MM Sigma Algo Lifetime</h5>
+            </div>
+            <div class="col-6 mt-2 text-end">
+            <h6 class="fw-normal mb-0 d-inline-block">&#36;$1200.00</h6>
+            <h6 class="fw-normal text-600"><span class="d-inline-block">
+                <del>&#36;$2500.00</del></span></h6>
+            </div>
+        </a>
+        </div>
+        
+    </div>
+-->
+
+    </div>
+    <!-- end of .container-->
+
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+
+
+
+
+<!-- ============================================-->
+<!-- <section> begin ============================-->
+<section class="text-center bg-light pt-6 pt-lg-8 pb-0 pb-sm-5 pb-lg-8" id="ecommerceSubscribe">
+
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-6"><a href="#!">
+            <h5 class="fw-normal mb-3 text-uppercase text-center ls-2">follow @ moneymovesinvestments</h5>
+        </a></div>
+        <div class="w-100"></div>
+        <div class="col-lg-6 pe-xl-4">
+        <div class="row g-2" id="ecommerce-gallery">
+            <div class="col-6"><a href="#!" data-bp="{% static 'img/intro.png' %}" data-bigpicture='{"gallery":"#ecommerce-gallery"}' data-caption="your caption"><img class="rounded img-fluid" src="{% static 'img/intro.png' %}" alt="" data-zanim-xs='{"delay":0.1,"animation":"zoom-in"}' data-zanim-trigger="scroll" /></a>
+            </div>
+            <div class="col-6"><a href="#!" data-bp="{% static 'img/intro_5.png' %}" data-bigpicture='{"gallery":"#ecommerce-gallery"}' data-caption="your caption"><img class="rounded img-fluid" src="{% static 'img/intro_5.png' %}" alt="" data-zanim-xs='{"delay":0,"animation":"zoom-in"}' data-zanim-trigger="scroll" /></a>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-6">
+        <div class="bg-white rounded border border-dark p-4 p-sm-6 p-lg-5 p-xl-6 mt-7 mt-lg-0">
+            <h4 class="mb-3 fw-bold">Sign up and receive<span class="font-base fst-italic"> hot deals</span></h4>
+            <div class="input-group mb-3">
+            <input class="form-control bg-light" type="text" placeholder="Enter Email Here" aria-label="Recipient's username" aria-describedby="button-addon-e" />
+            <button class="btn btn-dark btn-outline-dark text-light px-2 px-sm-3 px-lg-4" id="button-addon-e" type="button">subscribe</button>
+            </div>
+            <h6 class="fw-normal text-700">we respect your privacy</h6>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- end of .container-->
+
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+
+
+
+
+<!-- ============================================-->
+<!-- <section> begin ============================-->
+<section class="text-center" id="ecommerceFooter">
+
+    <div class="container">
+    <div class="row flex-center">
+        <div class="col-lg-6"><a href="#!"><span class="fab fa-instagram text-black fs-1 mx-2"></span></a><a href="#!"><span class="fab fa-discord text-black fs-1 mx-2"></span></a><a href="#!"><span class="fab fa-telegram text-black fs-1 mx-1 mx-sm-2"></span></a>
+        <div class="d-block mt-4 fs--1 fw-bold font-sans-serif"><a class="me-1 mx-sm-2 text-700" href="#!">Contact</a><a class="mx-1 mx-sm-2 text-700" href="#!">Terms of service</a><a class="mx-1 mx-sm-2 text-700" href="#!">Privacy policy</a></div>
+        </div>
+    </div>
+    </div>
+    <!-- end of .container-->
+
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+{% endblock content %}
